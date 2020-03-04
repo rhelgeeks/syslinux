@@ -1,0 +1,11 @@
+ip route add 172.19.1.0/24 dev eth1 table 1
+ip route add default via 172.19.2.1 dev eth1 table 1
+ip route add 172.19.2.0/24 dev eth0 table 2
+ip route add default via 172.19.2.1 dev eth0 table 2
+
+ip rule add iif eth0 table 1
+ip rule add iif eth1 table 2
+
+ip rule add from 172.19.1.100 table 1
+ip rule add from 172.19.2.100 table 2
+
